@@ -8,6 +8,7 @@ import org.jfree.fx.ResizableCanvas;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 
@@ -32,12 +33,25 @@ public class Moon extends Application {
         graphics.setTransform(new AffineTransform());
         graphics.setBackground(Color.white);
         graphics.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
-        graphics.draw(new Ellipse2D.Double(100,100,100,100));
+        GeneralPath myShape = new GeneralPath();
+        myShape.moveTo(100f,100f);
+        myShape.curveTo(170,100,170,200,100,200);
+        myShape.lineTo(100,100);
+        myShape.closePath();
+//        graphics.draw(myShape);
+        GeneralPath path = new GeneralPath();
+        path.moveTo(75f,75f);
+        path.curveTo(170-25,100-25,170-25,200-25,100,200);
+        myShape.lineTo(75,75);
+        path.closePath();
+//        graphics.draw(path);
+        Area a = new Area(myShape);
+        Area b = new Area(path);
         graphics.setColor(Color.black);
-        graphics.fill(new Ellipse2D.Double(100,100,100,100));
-        graphics.setColor(Color.white);
-        graphics.draw(new Ellipse2D.Double(70,95,100,100));
-        graphics.fill(new Ellipse2D.Double(70,95,100,100));
+        Area sub = new Area(a);
+        sub.subtract(b);
+        graphics.draw(sub);
+        graphics.fill(sub);
     }
 
 
