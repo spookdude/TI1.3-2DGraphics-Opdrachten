@@ -53,7 +53,7 @@ public class YingYang extends Application {
         Area a = new Area(path);
         Area b = new Area(myShape);
         Area c = new Area(new Ellipse2D.Double(100,120,10,10));
-        Area d = new Area(new Ellipse2D.Double(50,100,100,100));
+        Area d = new Area(new Ellipse2D.Double(52,100,100,100));
         Area sub = new Area(b);
         sub.subtract(a);
         graphics.setColor(Color.black);
